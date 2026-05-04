@@ -1,0 +1,55 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    
+    "users": {
+      ".indexOn": ["role", "email"],
+      "$uid": {
+        ".validate": "newData.hasChildren(['name', 'email', 'role'])"
+      }
+    },
+    
+    "hostels": {
+      ".indexOn": ["name", "status"],
+      "$hostelId": {
+        ".validate": "newData.hasChildren(['name', 'address', 'phone'])"
+      }
+    },
+    
+    "rooms": {
+      ".indexOn": ["roomNumber", "hostelId"],
+      "$roomId": {
+        ".validate": "newData.hasChildren(['roomNumber', 'hostelId', 'totalBeds'])"
+      }
+    },
+    
+    "beds": {
+      ".indexOn": ["roomId", "status", "hostelId"],
+      "$bedId": {
+        ".validate": "newData.hasChildren(['bedNumber', 'roomId', 'hostelId', 'status'])"
+      }
+    },
+    
+    "students": {
+      ".indexOn": ["name", "phone", "hostelId", "roomId", "bedId", "status", "joinDate"],
+      "$studentId": {
+        ".validate": "newData.hasChildren(['name', 'phone', 'hostelId', 'bedId', 'monthlyRent', 'joinDate'])"
+      }
+    },
+    
+    "payments": {
+      ".indexOn": ["studentId", "month", "createdAt", "hostelId"],
+      "$paymentId": {
+        ".validate": "newData.hasChildren(['studentId', 'hostelId', 'amount', 'month', 'createdAt'])"
+      }
+    },
+    
+    "bills": {
+      ".indexOn": ["studentId", "month", "createdAt", "hostelId", "status"],
+      "$billId": {
+        ".validate": "newData.hasChildren(['studentId', 'hostelId', 'month', 'rentAmount', 'status'])"
+      }
+    }
+  }
+}

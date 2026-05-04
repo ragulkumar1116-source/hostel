@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Management - Krish Infotech</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/license.css">
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar bg-slate-800 text-white w-64 flex flex-col">
+            <div class="p-6 border-b border-slate-700">
+                <h1 class="text-xl font-bold">🏨 Hostel Manager</h1>
+                <p class="text-xs text-slate-400 mt-1">Krish Infotech</p>
+            </div>
+            
+            <nav class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="dashboard.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="hostels.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            Hostels
+                        </a>
+                    </li>
+                    <li>
+                        <a href="rooms.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            Rooms & Beds
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                            Students
+                        </a>
+                    </li>
+                    <li>
+                        <a href="payments.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            Payments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Reports
+                        </a>
+                    </li>
+                    <li>
+                        <a href="license.html" class="nav-link active flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            License
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="p-4 border-t border-slate-700">
+                <button onclick="Auth.logout()" class="flex items-center gap-3 px-4 py-3 w-full rounded-lg hover:bg-slate-700 transition text-red-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-auto">
+            <header class="bg-white shadow-sm border-b px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">🔐 License Management</h2>
+                        <p class="text-sm text-gray-500">Manage software license and renewals</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span id="licenseStatusBadge" class="px-3 py-1 rounded-full text-sm font-medium"></span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-6">
+                <!-- Current License Status -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Current License Status</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">License Status</p>
+                            <p id="currentStatus" class="text-xl font-bold text-blue-600">-</p>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">Expiry Date</p>
+                            <p id="expiryDate" class="text-xl font-bold text-green-600">-</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">Days Remaining</p>
+                            <p id="daysRemaining" class="text-xl font-bold text-yellow-600">-</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm text-gray-600">Current License Key</p>
+                        <p id="currentKey" class="text-lg font-mono text-gray-800 mt-1">-</p>
+                    </div>
+                </div>
+
+                <!-- Admin Actions -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Generate New License -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Generate New License</h3>
+                        <p class="text-sm text-gray-500 mb-4">Create a new license key with custom duration.</p>
+                        
+                        <div class="form-group mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">License Duration</label>
+                            <select id="newLicenseDuration" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="1">1 Year</option>
+                                <option value="2">2 Years</option>
+                                <option value="3">3 Years</option>
+                                <option value="5">5 Years</option>
+                            </select>
+                        </div>
+                        
+                        <button onclick="LicenseAdmin.generateNewLicense()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            Generate New License Key
+                        </button>
+                        
+                        <div id="newLicenseResult" class="mt-4 hidden">
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <p class="text-sm text-green-800 font-semibold">New License Generated!</p>
+                                <p class="text-sm text-gray-600 mt-2">License Key:</p>
+                                <p id="newLicenseKey" class="text-xl font-mono font-bold text-green-700 mt-1"></p>
+                                <p class="text-sm text-gray-600 mt-2">Expiry Date:</p>
+                                <p id="newLicenseExpiry" class="text-md text-gray-800"></p>
+                                <p class="text-xs text-gray-500 mt-2">Copy this key and provide to customer.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Renew License -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Renew Current License</h3>
+                        <p class="text-sm text-gray-500 mb-4">Extend current license by +1 year with new key.</p>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-yellow-800">
+                                <strong>Note:</strong> Renewal will add 1 year to current expiry date and generate a new license key.
+                            </p>
+                        </div>
+                        
+                        <button onclick="LicenseAdmin.renewLicense()" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                            Renew License (+1 Year)
+                        </button>
+                        
+                        <div id="renewResult" class="mt-4 hidden">
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <p class="text-sm text-green-800 font-semibold">License Renewed!</p>
+                                <p class="text-sm text-gray-600 mt-2">New License Key:</p>
+                                <p id="renewedLicenseKey" class="text-xl font-mono font-bold text-green-700 mt-1"></p>
+                                <p class="text-sm text-gray-600 mt-2">New Expiry Date:</p>
+                                <p id="renewedExpiry" class="text-md text-gray-800"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activate License -->
+                <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Activate License</h3>
+                    <p class="text-sm text-gray-500 mb-4">Enter a license key to activate the system.</p>
+                    
+                    <div class="flex gap-4">
+                        <input type="text" id="activateKeyInput" placeholder="Enter 8-digit license key" 
+                               class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               maxlength="8">
+                        <button onclick="LicenseAdmin.activateLicense()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                            Activate
+                        </button>
+                    </div>
+                    <p id="activateResult" class="mt-2 text-sm"></p>
+                </div>
+
+                <!-- License History -->
+                <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">License Information</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="text-left py-2 px-4">Property</th>
+                                    <th class="text-left py-2 px-4">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 text-gray-600">Software</td>
+                                    <td class="py-2 px-4 font-medium">Hostel Management System</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 text-gray-600">Vendor</td>
+                                    <td class="py-2 px-4 font-medium">Krish Infotech</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 text-gray-600">License Type</td>
+                                    <td class="py-2 px-4 font-medium">Annual Subscription</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 text-gray-600">Key Format</td>
+                                    <td class="py-2 px-4 font-medium">8-Digit Encoded (Y+20+M+RD)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 text-gray-600">Support</td>
+                                    <td class="py-2 px-4 font-medium">support@krishinfotech.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/license.js"></script>
+    <script src="js/license-admin.js"></script>
+</body>
+</html>
